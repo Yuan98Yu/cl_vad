@@ -4,7 +4,7 @@ import glob
 import torch
 
 
-def load_checkpoint(args, model_without_ddp, optimizer):
+def load_checkpoint(args, model_without_ddp, optimizer=None):
     # restart training #
     if args.resume:
         if os.path.isfile(args.resume):
@@ -26,12 +26,14 @@ def load_checkpoint(args, model_without_ddp, optimizer):
             print("=> load resumed checkpoint '{}' (epoch {})".format(
                 args.resume, checkpoint['epoch']))
 
-            try:
-                optimizer.load_state_dict(checkpoint['optimizer'])
-            except Exception:
-                print(
-                    '[WARNING] failed to load optimizer state, initialize optimizer'
-                )
+            if optimizer:
+                try:
+                    optimizer.load_state_dict(checkpoint['optimizer'])
+                except Exception:
+                    print(
+                        '[WARNING] failed to load optimizer state, '
+                        'initialize optimizer'
+                    )
         else:
             print("[Warning] no checkpoint found at '{}', use random init".
                   format(args.resume))
@@ -114,7 +116,8 @@ def neq_load_customized(model, pretrained_dict, verbose=True):
             if k not in pretrained_dict:
                 print(k)
         print('===================================\n')
-    # pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
+    # pretrained_dict = {k: v for k, v in pretrained_dict.items()
+    # if k in model_dict}
     del pretrained_dict
     model_dict.update(tmp)
     del tmp

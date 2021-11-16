@@ -30,7 +30,8 @@ def train_one_epoch(data_loader, model, transforms_cuda, optimizer, epoch,
                     args, logger):
     def tr(x):  # transformation on tensor
         B = x.size(0)
-        return transforms_cuda(x).view(B, 3, args.num_seq, args.seq_len, args.img_dim, args.img_dim) \
+        return transforms_cuda(x).view(B, 3, args.num_seq, args.seq_len,
+                                       args.img_dim, args.img_dim) \
             .transpose(1, 2).contiguous()
 
     batch_time = AverageMeter('Time', ':.2f')
@@ -57,7 +58,8 @@ def train_one_epoch(data_loader, model, transforms_cuda, optimizer, epoch,
         if args.objective == 'soft-boundary':
             scores = dist - args.R**2
             loss = args.R ** 2 + \
-                (1 / args.nu) * torch.mean(torch.max(torch.zeros_like(scores), scores))
+                (1 / args.nu) * \
+                torch.mean(torch.max(torch.zeros_like(scores), scores))
         else:
             loss = torch.mean(dist)
         optimizer.zero_grad()
@@ -65,7 +67,8 @@ def train_one_epoch(data_loader, model, transforms_cuda, optimizer, epoch,
         optimizer.step()
 
         # Update hypersphere radius R on mini-batch distances
-        if (args.objective == 'soft-boundary') and (epoch >= args.warm_up_n_epochs):
+        if (args.objective == 'soft-boundary') \
+                and (epoch >= args.warm_up_n_epochs):
             args.R.data = torch.tensor(get_radius(dist, args.nu)).cuda()
         losses.update(loss.item(), B)
 
@@ -122,7 +125,8 @@ def main_worker(gpu, ngpus_per_node, args, logger):
     #    amsgrad=args.optimizer_name == 'amsgrad')
     # criterion = nn.CrossEntropyLoss().cuda(args.gpu)
     # Set learning rate scheduler
-    # scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=self.lr_milestones, gamma=0.1)
+    # scheduler = optim.lr_scheduler.MultiStepLR(optimizer,
+    # milestones=self.lr_milestones, gamma=0.1)
 
     # restart training #
     args.iteration = 1

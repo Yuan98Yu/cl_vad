@@ -21,3 +21,10 @@ train_cl:
 	--pretrain ./log/train/epoch98000.pth.tar \
 	--cfg_path ./log/train_cl/config.json \
 	--log_path ./log/train_cl
+
+test:
+	python predict.py \
+	--resume ./log/train_cl/epoch299.pth.tar \
+	--cfg_path ./log/train_cl/config.json \
+	--log_path ./log/test_cl \
+	--gpu 2

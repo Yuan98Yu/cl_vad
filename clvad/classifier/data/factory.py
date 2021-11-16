@@ -24,13 +24,22 @@ def create_transform(args, mode='train'):
 
 def create_dataset(args, transform, mode='train') -> BaseADDataset:
     if args.dataset == 'shtech':
-        dataset = SHTECHDataset(
-            split_file='./data/train_split01.csv',
-            mode=mode,
-            transform=transform,
-            num_frames=args.seq_len,
-            ds=args.ds,
-        )
+        if mode == 'train':
+            dataset = SHTECHDataset(
+                split_file='./data/train_split01.csv',
+                mode=mode,
+                transform=transform,
+                num_frames=args.seq_len,
+                ds=args.ds,
+            )
+        else:
+            dataset = SHTECHDataset(
+                split_file='./data/test_split01.csv',
+                mode=mode,
+                transform=transform,
+                num_frames=args.seq_len,
+                ds=args.ds,
+            )
     else:
         raise NotImplementedError
     return dataset

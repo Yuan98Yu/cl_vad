@@ -22,7 +22,10 @@ def create_model(args):
     else:
         raise NotImplementedError
 
-    model.cuda()
+    if args.device:
+        model.to(args.device)
+    else:
+        model.cuda()
 
     # optimizer #
     if args.train_what == 'last':

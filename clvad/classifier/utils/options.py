@@ -76,6 +76,10 @@ def parse_args():
                         type=int,
                         help='manual epoch number (useful on restarts)')
 
+    # test #
+    parser.add_argument(
+        '--test10crop',
+        action='store_true')
     # env #
     parser.add_argument('--gpu', default=None, type=str)
 

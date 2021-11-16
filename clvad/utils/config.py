@@ -7,5 +7,7 @@ def save_args(cfg_path, args):
 
 
 def load_args(cfg_path, args):
-    with open(cfg_path, 'w') as f:
-        args.__dict__ = json.load(f)
+    with open(cfg_path, 'r') as f:
+        config = json.load(f)
+        config.update(args.__dict__)
+        args.__dict__ = config
