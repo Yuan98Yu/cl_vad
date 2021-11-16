@@ -1,8 +1,8 @@
 import torchvision.transforms as transforms
 
 from clvad.feature_learning.data.dataset import SHTECH_2CLIP
-import clvad.feature_learning.utils.augmentation as A
-import clvad.feature_learning.utils.transforms as T
+import clvad.utils.augmentation as A
+import clvad.utils.transforms as T
 
 
 def create_transform(args, mode='train'):
