@@ -54,9 +54,9 @@ def create_model(args):
 
     if args.train_what == 'last':
         logger.info('\n===========Check Grad============')
-        for name, param in model.named_parameters():
-            if param.requires_grad:
-                logger.info(name, param.requires_grad)
+        # for name, param in model.named_parameters():
+        #     if param.requires_grad:
+        #         logger.info(name, param.requires_grad)
         logger.info('=================================\n')
 
     return model, params

@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from clvad.feature_learning.backbone.select_backbone import select_backbone
+from clvad.feature.backbone.select_backbone import select_backbone
 
 
 # utils

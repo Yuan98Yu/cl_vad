@@ -1,6 +1,6 @@
 import torchvision.transforms as transforms
 
-from clvad.feature_learning.data.dataset import SHTECH_2CLIP
+from clvad.feature.data.dataset import SHTECH_2CLIP
 import clvad.utils.augmentation as A
 import clvad.utils.transforms as T
 

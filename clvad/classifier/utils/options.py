@@ -4,6 +4,9 @@ import argparse
 def parse_args():
     parser = argparse.ArgumentParser()
 
+    parser.add('--strategy',
+               default='infonce',
+               type=str)
     # path #
     parser.add_argument('--log_path',
                         default='log/train_cl',

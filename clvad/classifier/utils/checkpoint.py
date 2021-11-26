@@ -11,7 +11,7 @@ def load_checkpoint(args, model_without_ddp, optimizer=None):
             checkpoint = torch.load(args.resume, map_location='cpu')
             args.start_epoch = checkpoint['epoch'] + 1
             args.iteration = checkpoint['iteration']
-            args.c = checkpoint['iteration']
+            args.c = checkpoint['c'].to(args.device)
             args.nu = checkpoint['nu']
             args.R = checkpoint['R']
             state_dict = checkpoint['state_dict']

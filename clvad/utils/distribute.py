@@ -4,7 +4,7 @@ import torch
 import torch.utils.data as data
 import torch.distributed as dist
 
-from clvad.feature_learning.data.dataloader import FastDataLoader
+from clvad.feature.data.dataloader import FastDataLoader
 
 
 def init_distributed_env(args, ngpus_per_node, gpu):

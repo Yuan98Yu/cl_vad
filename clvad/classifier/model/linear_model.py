@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from clvad.classifier.model.base import BaseModel
-from clvad.feature_learning.backbone import select_backbone
+from clvad.feature.backbone import select_backbone
 
 
 class LinearModel(BaseModel):

@@ -1,4 +1,4 @@
-from clvad.feature_learning.model.pretrain import InfoNCE, UberNCE
+from clvad.feature.model.pretrain import InfoNCE, UberNCE
 
 
 def create_model(args):

@@ -24,7 +24,7 @@ train_cl:
 
 test:
 	python predict.py \
-	--resume ./log/train_cl/epoch299.pth.tar \
+	--resume ./log/train_cl/epoch0.pth.tar \
 	--cfg_path ./log/train_cl/config.json \
-	--log_path ./log/test_cl \
-	--gpu 2
+	--log_path ./log/test \
+	--gpu 0

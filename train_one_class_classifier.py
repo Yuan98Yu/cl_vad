@@ -19,7 +19,7 @@ from clvad.classifier.utils.meter import AverageMeter, ProgressMeter
 from clvad.classifier.utils.checkpoint import save_checkpoint, load_checkpoint
 import clvad.utils.distribute as distributed
 from clvad.classifier.utils.options import parse_args
-from clvad.classifier.utils.logger import set_logger
+from clvad.utils.logger import set_logger
 from clvad.classifier.utils.seed import set_seed
 import clvad.utils.tensorboard_utils as TB
 import clvad.utils.transforms as T
@@ -204,7 +204,10 @@ def main():
         load_args(args.cfg_path, args)
     else:
         save_args(args.cfg_path, args)
-    logger = set_logger(args)
+    logger = set_logger(args.log_path)
+    # Print configuration
+    logger.info('Deep SVDD objective: %s' % args.objective)
+    logger.info('Nu-paramerter: %.2f' % args.nu)
     args.logger = logger
     # # Default device to 'cpu' if cuda is not available
     # if not torch.cuda.is_available():
